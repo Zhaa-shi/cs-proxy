@@ -7,16 +7,14 @@ if [ ! -x ./xray ]; then
   curl -sL --retry 5 --retry-delay 2 -o x.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
   unzip -oq x.zip && rm -f x.zip
 fi
-if [ ! -f config.json ]; then
-  UUID=$(cat /proc/sys/kernel/random/uuid)
-  WSP=$(tr -dc 'a-z0-9' < /dev/urandom | head -c 20)
-  printf '%s\n%s\n' "$UUID" "$WSP" > .creds
-  cat > config.json <<JSON
+UUID="4af0d479-9b05-4e7a-8b3c-f5e777b4b7fc"
+WSP="cy73zx9flnvtepiqwom6"
+cat > config.json <<JSON
 {
   "log": { "loglevel": "warning" },
   "inbounds": [{
     "port": 443,
-    "listen": "0.0.0.0",
+    "listen": "127.0.0.1",
     "protocol": "vless",
     "settings": { "clients": [{ "id": "$UUID", "flow": "" }], "decryption": "none" },
     "streamSettings": { "network": "ws", "security": "none", "wsSettings": { "path": "/$WSP" } }
@@ -24,7 +22,6 @@ if [ ! -f config.json ]; then
   "outbounds": [{ "protocol": "freedom" }]
 }
 JSON
-fi
 pkill -f "xray run" 2>/dev/null || true
 nohup ./xray run -c config.json > xray.log 2>&1 &
 sleep 1
