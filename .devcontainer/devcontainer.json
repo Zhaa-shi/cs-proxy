@@ -1,6 +1,9 @@
 {
   "name": "cs-proxy",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": { "version": "latest" }
+  },
   "forwardPorts": [443],
   "portsAttributes": {
     "443": { "label": "xray", "visibility": "public", "onAutoForward": "silent" }
