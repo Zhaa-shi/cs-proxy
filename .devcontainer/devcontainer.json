@@ -4,9 +4,9 @@
   "features": {
     "ghcr.io/devcontainers/features/sshd:1": { "version": "latest" }
   },
-  "forwardPorts": [443],
+  "forwardPorts": [9443],
   "portsAttributes": {
-    "443": { "label": "xray", "visibility": "public", "onAutoForward": "silent" }
+    "9443": { "label": "xray", "onAutoForward": "silent" }
   },
   "postCreateCommand": "bash .devcontainer/setup.sh",
   "postStartCommand": "bash .devcontainer/setup.sh"
