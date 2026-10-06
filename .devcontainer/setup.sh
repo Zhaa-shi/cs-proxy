@@ -13,7 +13,7 @@ cat > config.json <<JSON
 {
   "log": { "loglevel": "warning" },
   "inbounds": [{
-    "port": 443,
+    "port": 9443,
     "listen": "127.0.0.1",
     "protocol": "vless",
     "settings": { "clients": [{ "id": "$UUID", "flow": "" }], "decryption": "none" },
