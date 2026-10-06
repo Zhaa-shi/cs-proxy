@@ -1,0 +1,10 @@
+{
+  "name": "cs-proxy",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "forwardPorts": [443],
+  "portsAttributes": {
+    "443": { "label": "xray", "visibility": "public", "onAutoForward": "silent" }
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "postStartCommand": "bash .devcontainer/setup.sh"
+}
